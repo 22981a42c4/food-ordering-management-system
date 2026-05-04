@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Bill</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>🧾 Order Summary</h1>
+        <div class="menu-grid">
+            {% for item, details in order.items() %}
+                <div class="menu-item">
+                    <img src="{{ menu[item].photo }}" alt="{{ item }}">
+                    <h3>{{ item }}</h3>
+                    <p>Qty: {{ details.qty }}</p>
+                    <p>Subtotal: ₹{{ details.subtotal }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="total-box">
+            ✨ Total: ₹{{ total_amount }} ✨
+        </div>
+        <p style="color:#ffcc00; font-style:italic; margin-top:15px;">Thank you for ordering!</p>
+        <a href="/" class="btn">⬅ Back to Menu</a>
+    </div>
+</body>
+</html>

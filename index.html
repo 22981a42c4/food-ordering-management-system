@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>🍴 Food Ordering Menu</h1>
+        <form method="POST">
+            <div class="menu-grid">
+                {% for item, details in menu.items() %}
+                <div class="menu-item">
+                    <img src="{{ details.photo }}" alt="{{ item }}">
+                    <h3>{{ item }}</h3>
+                    <p>₹{{ details.price }}</p>
+                    <input type="number" name="{{ item }}" min="0" placeholder="Qty">
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn">Place Order</button>
+        </form>
+    </div>
+</body>
+</html>
